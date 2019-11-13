@@ -8,16 +8,18 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <div className="blogpost">
+      <div>
         <h1>{title}</h1>
-        <img alt={title} src={image.file.url} />
-        <div className="tags">
-          {tags.map((tag) => (
-            <span className="tag" key={tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
+        {image && <img alt={title} src={image.file.url} />}
+        {tags && (
+          <div>
+            {tags.map((tag) => (
+              <span className="tag" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <p className="body-text">{copy.copy}</p>
         <Link to="/blog">View more posts</Link>
         <Link to="/">Back to Home</Link>
