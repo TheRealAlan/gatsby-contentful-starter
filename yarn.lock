@@ -9640,6 +9640,11 @@ react-helmet@^5.2.1:
     react-fast-compare "^2.0.2"
     react-side-effect "^1.1.0"
 
+react-hooks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-hooks/-/react-hooks-1.0.1.tgz#e62197c38cd8d0703060f791234f7f4698aa7c44"
+  integrity sha1-5iGXw4zY0HAwYPeRI09/RpiqfEQ=
+
 react-hot-loader@^4.12.16:
   version "4.12.16"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.16.tgz#353bd07fbb08f791b5720535f86b0a8f9b651317"
