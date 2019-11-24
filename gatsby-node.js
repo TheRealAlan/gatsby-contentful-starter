@@ -3,11 +3,19 @@ const slash = require(`slash`);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
-  // we use the provided allContentfulBlog query to fetch the data from Contentful
+
   return graphql(
     `
       {
         allContentfulBlog {
+          edges {
+            node {
+              id
+              slug
+            }
+          }
+        }
+        allContentfulPage {
           edges {
             node {
               id
@@ -23,14 +31,27 @@ exports.createPages = ({ graphql, actions }) => {
         console.log('Error retrieving contentful data', result.errors);
       }
 
-      // Resolve the paths to our template
-      const blogTemplate = path.resolve('./src/templates/blog.js');
+      // Resolve the paths to our templates
+      const blogTemplate = path.resolve('./src/templates/Blog.js');
+      const pageTemplate = path.resolve('./src/templates/Page.js');
 
-      // Then for each result we create a page.
+      // Assign Blog template
       result.data.allContentfulBlog.edges.forEach((edge) => {
         createPage({
           path: `/blog/${edge.node.slug}/`,
           component: slash(blogTemplate),
+          context: {
+            slug: edge.node.slug,
+            id: edge.node.id,
+          },
+        });
+      });
+
+      // Assign page template
+      result.data.allContentfulPage.edges.forEach((edge) => {
+        createPage({
+          path: `/${edge.node.slug}/`,
+          component: slash(pageTemplate),
           context: {
             slug: edge.node.slug,
             id: edge.node.id,

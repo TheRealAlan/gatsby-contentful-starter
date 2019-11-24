@@ -1,24 +1,23 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 const Blog = ({ data }) => {
   const blogPosts = data.allContentfulBlog.edges;
+
   return (
     <Layout>
       <SEO title="Blog posts" />
-      <h1>{"Here's a list of all blogposts!"}</h1>
-      <div className="blogposts">
+      <h1>Blog posts</h1>
+      <ul>
         {blogPosts.map(({ node: post }) => (
-          <div key={post.id}>
+          <li key={post.id}>
             <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-          </div>
+          </li>
         ))}
-        <span className="mgBtm__24" />
-        <Link to="/">Go back to the homepage</Link>
-      </div>
+      </ul>
     </Layout>
   );
 };
@@ -33,15 +32,6 @@ export const query = graphql`
           id
           title
           slug
-          copy {
-            copy
-          }
-          image {
-            file {
-              url
-            }
-          }
-          tags
         }
       }
     }

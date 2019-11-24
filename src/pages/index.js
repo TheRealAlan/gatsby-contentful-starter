@@ -1,20 +1,13 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import SEO from '../components/SEO';
 
-import Layout from '../components/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/blog/">View all posts</Link>
+    <h1>Gatsby Contentful Starter</h1>
+    <p>An example of Gatsby using Contentful and Netlify.</p>
   </Layout>
 );
 

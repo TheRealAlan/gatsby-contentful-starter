@@ -1,16 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { fluid } from 'gatsby-image';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-
-import dateformat from 'dateformat';
 
 import Copy from '../components/content_types/Copy';
 import Image from '../components/content_types/Image';
 
-function Blog({ data }) {
-  const { createdAt, title, tags, content } = data.contentfulBlog;
+function Page({ data }) {
+  const { title, content } = data.contentfulPage;
 
   return (
     <Layout>
@@ -19,27 +16,7 @@ function Blog({ data }) {
         {/* Header */}
         <header>
           <h1>{title}</h1>
-          <p>
-            Published on{' '}
-            <time dateTime={createdAt}>
-              {dateformat(createdAt, 'dddd, mmmm dS yyyy')}
-            </time>
-          </p>
         </header>
-
-        {/* Tags */}
-        {tags && (
-          <>
-            <h2>Tags</h2>
-            <ul>
-              {tags.map((tag) => (
-                <li className="tag" key={tag}>
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
 
         {/* Content Types */}
         {content.map((item) => {
@@ -74,15 +51,13 @@ function Blog({ data }) {
   );
 }
 
-export default Blog;
+export default Page;
 
 export const pageQuery = graphql`
   query($slug: String!) {
-    contentfulBlog(slug: { eq: $slug }) {
+    contentfulPage(slug: { eq: $slug }) {
       title
       slug
-      createdAt
-      tags
       content {
         ... on ContentfulImage {
           id
